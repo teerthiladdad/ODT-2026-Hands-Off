@@ -185,23 +185,23 @@ If your project is a game, list the rules clearly.
 ## 5.1 Definition of “Playable”
 Your project will be considered complete only if these conditions are met.
 
-- [ ] `[Condition 1]`
-- [ ] `[Condition 2]`
-- [ ] `[Condition 3]`
-- [ ] `[Condition 4]`
+- [ ] `[Condition 1 The ultrasonic sensor accurately detects the object's distance.]`
+- [ ] `[Condition 2 The code successfully calculates distance variation and ignores startup glitches.]`
+- [ ] `[Condition 3 Both servo motors move simultaneously to 90 degrees when triggered.]`
+- [ ] `[Condition 4 The physical pushrod mechanism closes the heavy MDF claws without stalling the motors.]`
 - [ ] `[Condition 5]`
 
 ## 5.2 Minimum Viable Version
 What is the smallest version of this project that still delivers the core experience?
 
 **Response:**  
-`[Write here]`
+`[A single claw mechanism that snaps shut when an object is removed too quickly from an ultrasonic sensor, powered by a laptop.]`
 
 ## 5.3 Stretch Features
 What features are nice to have but not essential?
 
-- `[Stretch feature 1]`
-- `[Stretch feature 2]`
+- `[Stretch feature 1 Dual-servo synchronized movement for heavier claws.]`
+- `[Stretch feature 2 External 5V power supply to prevent ESP32 brownouts.]`
 - `[Stretch feature 3]`
 
 ---
@@ -211,11 +211,11 @@ What features are nice to have but not essential?
 ## 6.1 Project Type
 Check all that apply.
 
-- [ ] Electronics-based
-- [ ] Mechanical
-- [ ] Sensor-based
+- [x] Electronics-based
+- [x] Mechanical
+- [x] Sensor-based
 - [ ] App-connected
-- [ ] Motorized
+- [x] Motorized
 - [ ] Sound-based
 - [ ] Light-based
 - [ ] Screen/UI-based
@@ -235,16 +235,16 @@ Include:
 - app interaction if any.
 
 **Response:**  
-`[Write here]`
+`[The project is an electromechanical trap. An ultrasonic sensor sits at the base, looking straight up at an object. An ESP32 reads this sensor every 100ms. If the variation in distance spikes, the ESP32 sends a PWM signal to two SG90 servos. The servos are connected to MDF claws via rigid wire pushrods. When the servos rotate, they push the rods, snapping the claws shut. An MIT App Inventor app connects to the ESP32 via BLE to send Arm/Disarm signals.]`
 
 ## 6.3 Input / Output Map
 
 | System Part | Type | What It Does |
 |---|---|---|
-| `[Button / Sensor / Switch / App Input]` | Input | `[Describe]` |
-| `[ESP32 / Controller]` | Processing | `[Describe]` |
-| `[LED / Motor / Servo / Buzzer / Display]` | Output | `[Describe]` |
-| `[Mechanical Assembly]` | Physical Action | `[Describe]` |
+| `[HC-SR04 Ultrasonic]` | Input | `[Constantly measures the height of the object.]` |
+| `[ESP32]` | Processing | `[Calculates speed variation, filters glitches, handles BLE.]` |
+| `[2x SG90 Servos]` | Output | `[Rotate to actuate the physical claw mechanism.]` |
+| `[Mechanical Assembly]` | Physical Action | `[Rigidly push inward to trap the object.]` |
 
 ---
 
@@ -291,8 +291,8 @@ Check all that apply.
 - [ ] Gears
 - [ ] Pulleys
 - [ ] Belt drives
-- [ ] Linkages
-- [ ] Hinges
+- [x] Linkages
+- [x] Hinges
 - [ ] Shafts
 - [ ] Springs
 - [ ] Bearings
@@ -305,7 +305,7 @@ Check all that apply.
 Describe the mechanism and what it is meant to do.
 
 **Response:**  
-`[Write here]`
+`[We moved away from a "string and elastic" tendon mechanism because pulling heavy MDF was too difficult and caused the claws to open slowly. We switched to a Rigid Pushrod Mechanism. Stiff metal wire connects the servo horn to the inner edge of the claw. When the servo rotates to 90 degrees, it rigidly pushes the claw shut; returning to 0 degrees pulls it open.]`
 
 ## 8.3 Motion Planning
 If something moves, explain:
@@ -316,7 +316,7 @@ If something moves, explain:
 - what could go wrong.
 
 **Response:**  
-`[Write here]`
+`[Two servos actuate. Each servo pushes a stiff wire 2cm outward. This linear push against a 45-degree angled base hinge causes the 10cm MDF claw to arc inward by about 60 degrees, meeting in the center to form a cage.]`
 
 ## 8.4 Simulation / CAD / Animation Before Making
 If your project includes mechanical motion, document the digital planning before fabrication.
@@ -341,14 +341,16 @@ What changed after the CAD, animation, or simulation stage?
 | Component | Quantity | Purpose |
 |---|---:|---|
 | `[ESP32]` | `1` | `[Main controller]` |
-| `[Component]` | `[Qty]` | `[Purpose]` |
-| `[Component]` | `[Qty]` | `[Purpose]` |
+| `[HC-SR04 Sensor]` | `[1]` | `[Ultrasonic distance detection]` |
+| `[SG90 Micro Servo]` | `[2]` | `[Claw actuation]` |
 
 ## 9.2 Wiring Plan
 Describe the main electrical connections.
 
 **Response:**  
-`[Write here]`
+`[The ESP32 is powered via USB. The Servos are powered directly from the 5V Power Supply module. Crucial: The Ground of the 5V supply is wired to the Ground of the ESP32 to ensure the PWM data signal is read correctly.
+Ultrasonic: TRIG to Pin 5, ECHO to Pin 18.
+Servos: Left Signal to Pin 21, Right Signal to Pin 22.]`
 
 ## 9.3 Circuit Diagram
 Insert a hand-drawn or software-made circuit diagram.
@@ -373,7 +375,7 @@ Insert a hand-drawn or software-made circuit diagram.
 
 | Tool / Platform | Purpose |
 |---|---|
-| `[MicroPython / Arduino / MIT App Inventor / CAD tool / other]` | `[Purpose]` |
+| `[Thonny / MicroPython]` | `[Writing the core logic and flashing the ESP32.]` |
 | `[Tool]` | `[Purpose]` |
 
 ## 10.2 Software Logic
@@ -389,7 +391,7 @@ Include:
 - reset behavior.
 
 **Response:**  
-`[Write here]`
+`[The code boots up and runs a calibration sequence to ignore startup sensor glitches (Ghost echoes). It then enters a while loop, checking the distance. It calculates variation = abs(current_distance - previous_distance). If variation > 2.5, it fires the servos. It also utilizes hardware interrupts to listen for BLE strings from the mobile app to override the game state.]`
 
 ## 10.3 Code Flowchart
 Insert a flowchart showing your code logic.
@@ -419,7 +421,7 @@ Suggested sequence:
 
 ## 11.1 Is an app part of this project?
 - [ ] Yes
-- [ ] No
+- [x] No
 
 If yes, complete this section.
 
@@ -466,8 +468,8 @@ Insert a sketch or screenshot of the app interface.
 
 | Item | Quantity | In Kit? | Need to Buy? | Estimated Cost | Material / Spec | Why This Choice? |
 |---|---:|---|---|---:|---|---|
-| `[ESP32]` | `1` | `Yes` | `No` | `0` | `[Spec]` | `[Reason]` |
-| `[Item]` | `[Qty]` | `[Yes/No]` | `[Yes/No]` | `[Cost]` | `[Spec]` | `[Reason]` |
+| `[ESP32]` | `1` | `Yes` | `No` |
+| `[MDF Board]` | `[1]` | `[Yes]` | `[No]` |
 | `[Item]` | `[Qty]` | `[Yes/No]` | `[Yes/No]` | `[Cost]` | `[Spec]` | `[Reason]` |
 
 ## 12.2 Material Justification
@@ -643,8 +645,8 @@ What is the single biggest uncertainty in your project at this stage?
 
 | Date | Problem Found | Type | What You Tried | Result | Next Action |
 |---|---|---|---|---|---|
-| `[Date]` | `[Describe issue]` | `[Technical / Mechanical / UI / Gameplay]` | `[What you did]` | `[Worked / Partly / Failed]` | `[Next step]` |
-| `[Date]` | `[Describe issue]` | `[Type]` | `[What you did]` | `[Result]` | `[Next step]` |
+| `[Week 3]` | `[Servos twitching but not moving]` | `[Technical]` | `[Added shared Ground wire.]` | `[Servos snap perfectly.]` | `[Move to code logic]` |
+| `[Week 4]` | `[ESP32 freezing/disconnecting when claws snap]` | `[Technical]` | `[Moved servos from ESP32 5V pin to an external 5V power supply.]` | `[Works better]` | `[Final assembly]` |
 
 ## 16.4 Playtesting Notes
 
@@ -706,15 +708,15 @@ Example:
 Describe the final version of your project.
 
 **Response:**  
-`[Write here]`
+`[We successfully built "Hands Off". The final physical model uses a laser-cut hexagonal base with two large, hinged MDF claws. The artifact sits centrally over the HC-SR04. The dual-servo pushrod mechanism is incredibly snappy and violent (in a fun way), making the failure condition very satisfying. The Game Master app connects flawlessly via BLE.]`
 
 ## 18.2 What Works Well
-- `[Point 1]`
-- `[Point 2]`
+- `[Point 1 The acceleration logic. It feels perfectly tuned to catch shaky hands.]`
+- `[Point 2 The dual-servo pushrod mechanism. It handles the heavy MDF with ease.]`
 - `[Point 3]`
 
 ## 18.3 What Still Needs Improvement
-- `[Point 1]`
+- `[Point 1 The HC-SR04 sensor sometimes catches the side of the claw if it isn't aligned perfectly.]`
 - `[Point 2]`
 - `[Point 3]`
 
@@ -722,7 +724,7 @@ Describe the final version of your project.
 How did the project change from the initial idea?
 
 **Response:**  
-`[Write here]`
+`[We originally planned to use an artist's wooden mannequin hand and use fishing line tendons. We realized the wood was too heavy and the internal elastics were too stiff for our SG90 servos. We pivoted to designing our own geometric MDF claws and using a rigid pushrod linkage instead, which ultimately looked better and functioned 100x more reliably.]`
 
 ---
 
@@ -745,7 +747,7 @@ What did you learn about:
 - integration?
 
 **Response:**  
-`[Write here]`
+`[The biggest lesson was understanding Power and Ground. Learning that microcontrollers can "brown out" when motors pull too much current, and discovering that an external power supply won't work unless it shares a Ground line with the data source, was a massive "aha" moment that saved our project. Also, writing code that measures delta (change over time) rather than just absolute values made the sensor feel much "smarter."]`
 
 ## 19.3 Design Reflection
 What did you learn about:
@@ -763,7 +765,7 @@ What did you learn about:
 What would you improve next?
 
 **Response:**  
-`[Write here]`
+`[We would add a Capacitive Touch sensor (using copper tape) to the MDF claws, so that if the player's string accidentally brushes against the sides of the claw while lifting, it triggers the trap, adding a second layer of difficulty to the extraction!]`
 
 ---
 
