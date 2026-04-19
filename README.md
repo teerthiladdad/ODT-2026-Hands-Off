@@ -75,9 +75,9 @@ In 1–2 paragraphs, explain:
 - what technologies are involved.
 
 **Response:**  
-`["THE CLAW SNATCHER" is a physical tabletop game inspired by the tension of bomb-defusal or the classic "Operation" game. At the center of the table sits an open, geometric MDF claw mechanism. Inside rests a 3D-printed artifact. Two players must each take one end of a string, loop it through the artifact, and lift it straight up together.
+"THE CLAW SNATCHER" is a physical tabletop game inspired by the tension of bomb-defusal or the classic "Operation" game. At the center of the table sits an open, geometric MDF claw mechanism. Inside rests a 3D-printed artifact. Two players must each take one end of a string, loop it through the artifact, and lift it straight up together.
 
-The twist? It's not just about lifting it; it's about smoothness. An ultrasonic sensor hidden beneath the artifact measures the variation in distance. If the players' hands shake, or if they try to yank the object out abruptly, the ESP32 microcontroller registers the sudden jump in speed and fires two servo motors simultaneously, slamming the heavy claws shut to trap the object (and potentially their strings). It's a test of communication, steady hands, and nerve, enhanced by a Bluetooth "Game Master" app that lets a third person secretly arm or manually trigger the trap.]`
+The twist? It's not just about lifting it; it's about smoothness. An ultrasonic sensor hidden beneath the artifact measures the variation in distance. If the players' hands shake, or if they try to yank the object out abruptly, the ESP32 microcontroller registers the sudden jump in speed and fires two servo motors simultaneously, slamming the heavy claws shut to trap the object (and potentially their strings). It's a test of communication, steady hands, and nerve, enhanced by a Bluetooth "Game Master" app that lets a third person secretly arm or manually trigger the trap.
 
 ---
 
@@ -103,7 +103,7 @@ Answer the following:
 - Why would someone want to try it again?
 
 **Response:**  
-`[Write here]`
+`[We are creating a high-stakes, nerve-wracking cooperative experience. We want the players to feel the physical tension of trying to stay perfectly still while coordinating with a partner. They will want to try it again because the failure condition is immediate and dramatic (the loud SNAP of the claws), triggering a "let's try one more time, I know we can do it smoother" response.]`
 
 ## 2.3 Design Persona
 Complete the sentence below:
@@ -111,7 +111,7 @@ Complete the sentence below:
 > We are designing this project as if we are a small creative studio making a **[toy / game / playable object / interactive experience]** for **[children / teens / adults / classmates / exhibition visitors / mixed audience]**.
 
 **Response:**  
-`[Write here]`
+`[We are designing this project as if we are a small creative studio making a playable tabletop object for our classmates and exhibition visitors.Write here]`
 
 ---
 
@@ -122,7 +122,7 @@ List what inspired the project.
 
 | Source Type | Title / Link | What Inspired You |
 |---|---|---|
-| `[Toy / Board game / App / Video / Website / Object]` | `[Link or title]` | `[What did you learn or borrow?]` |
+| `[Movie Scene]` | `[Indiana Jones: Raiders of the Lost Ark (Idol Scene)]` | `[The concept of replacing/stealing an object off a weight/pressure plate without triggering the environment.]` |
 | `[Toy / Board game / App / Video / Website / Object]` | `[Link or title]` | `[What did you learn or borrow?]` |
 | `[Toy / Board game / App / Video / Website / Object]` | `[Link or title]` | `[What did you learn or borrow?]` |
 
@@ -130,7 +130,7 @@ List what inspired the project.
 What makes your project original?
 
 **Response:**  
-`[Write here]`
+`[Instead of a simple "distance" trigger (like a motion sensor light), our trap uses an algorithm to calculate acceleration/smoothness. You are allowed to move the object, but if the current_distance minus the previous_distance exceeds our 2.5cm threshold in a fraction of a second, the trap fires.]`
 
 ---
 
@@ -146,36 +146,36 @@ Examples:
 - move object → sensor detects → sound/light response → player reacts
 
 **Response:**  
-`[Write here]`
+`[Loop string into object -> Communicate -> Lift smoothly and slowly -> Win (if lifted past 15cm) OR Lose (sensor detects variation and snaps claw) -> Reset via Bluetooth app.]`
 
 ## 4.2 Intended Player / Audience
 
 | Question | Response |
 |---|---|
-| Who is this for? | `[Write here]` |
-| Age range | `[Write here]` |
-| Solo or multiplayer | `[Write here]` |
-| Expected duration of one round | `[Write here]` |
-| What should the player feel? | `[Write here]` |
-| Is explanation required before use? | `[Write here]` |
+| Who is this for? | `[Anyone who enjoys physical puzzle/skill games.]` |
+| Age range | `[10+ (Requires fine motor skills)]` |
+| Solo or multiplayer | `[2-Player Co-op ]` |
+| Expected duration of one round | `[30 to 60 seconds]` |
+| What should the player feel? | `[Anxiety, focus, and then sudden shock or relief.]` |
+| Is explanation required before use? | `[Yes, a brief 10-second explanation of the "smoothness" rule.]` |
 
 ## 4.3 Player Journey
 Describe exactly how a player will use the project.
 
-1. **Approach:** `[How does the player first encounter it?]`
-2. **Start:** `[How do they begin?]`
-3. **First Action:** `[What do they do first?]`
-4. **Main Interaction:** `[What keeps happening during use?]`
-5. **System Response:** `[How does the project respond?]`
-6. **Win / Lose / End Condition:** `[How does one round end?]`
-7. **Reset:** `[How does the next round begin?]`
+1. **Approach:** `[Players see the open wooden claw with the glowing artifact resting inside.]`
+2. **Start:** `[The Game Master uses the app to "Arm" the trap.]`
+3. **First Action:** `[Players carefully thread their hooks/strings into the artifact's side rings.]`
+4. **Main Interaction:** `[Players pull the strings taut and slowly lift upwards, talking to each other to keep the object perfectly level.]`
+5. **System Response:** `[The ultrasonic sensor pings the object 10 times a second, measuring the speed of the lift.]`
+6. **Win / Lose / End Condition:** `[If they lift it 15cm high smoothly, they win. If they twitch, the claw snaps shut instantly.]`
+7. **Reset:** `[Game Master hits "Reset" on the app, servos open the claws, and the object is placed back inside.]`
 
 ## 4.4 Rules of Play
 If your project is a game, list the rules clearly.
 
-- `[Rule 1]`
-- `[Rule 2]`
-- `[Rule 3]`
+- `[Rule 1: Players must use only the provided strings, no hands inside the claw zone.]`
+- `[Rule 2: The lift must be perfectly smooth. Sudden yanks trigger the trap.]`
+- `[Rule 3: If the claw closes and traps the object, the round is a failure.]`
 - `[Rule 4]`
 
 ---
