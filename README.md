@@ -146,7 +146,7 @@ Examples:
 - move object → sensor detects → sound/light response → player reacts
 
 **Response:**  
-`[Loop string into object -> Communicate -> Lift smoothly and slowly -> Win (if lifted past 15cm) OR Lose (sensor detects variation and snaps claw) -> Reset via Bluetooth app.]`
+`[Loop string into object -> Communicate -> Lift smoothly and slowly -> Win (if lifted past 15cm) OR Lose (sensor detects variation and snaps claw) -> Reset via thonny.]`
 
 ## 4.2 Intended Player / Audience
 
