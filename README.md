@@ -18,7 +18,7 @@ After forking this repository, rename it using the format:
 `ODT-2026-TeamName`
 
 ### Example
-`ODT-2026-PixelWizards`
+`ODT-2026-ClawSnatcher`
 
 Do not keep the default repository name.
 
@@ -58,14 +58,14 @@ By the final review, this README should clearly show:
 
 | Name | Primary Role | Secondary Role | Strengths Brought to the Project |
 |---|---|---|---|
-| `[Aarav Srivastava]` | `[Electronics / Coding / App / Fabrication / Mechanics]` | `[Role]` | `[Write here]` |
+| `[Aarav Srivastava]` | `[Coding / App / Mechanics]` | `[Testing]` | `[Logic design, MicroPython scripting, debugging hardware-software bridges]` |
 | `[Teerthi Laddad]` | `[Electronics / Coding / App / Fabrication / Mechanics]` | `[Role]` | `[Write here]` |
 
 ## 1.3 Project Title
 `Hands Off`
 
 ## 1.4 One-Line Pitch
-`[Describe your project in one sentence]`
+`[A two-player cooperative game where players must use strings to smoothly extract a bomb from a robotic claw before it detects their movement and snaps shut.]`
 
 ## 1.5 Expanded Project Idea
 In 1–2 paragraphs, explain:
@@ -75,7 +75,9 @@ In 1–2 paragraphs, explain:
 - what technologies are involved.
 
 **Response:**  
-`[Write here]`
+`["THE CLAW SNATCHER" is a physical tabletop game inspired by the tension of bomb-defusal or the classic "Operation" game. At the center of the table sits an open, geometric MDF claw mechanism. Inside rests a 3D-printed artifact. Two players must each take one end of a string, loop it through the artifact, and lift it straight up together.
+
+The twist? It's not just about lifting it; it's about smoothness. An ultrasonic sensor hidden beneath the artifact measures the variation in distance. If the players' hands shake, or if they try to yank the object out abruptly, the ESP32 microcontroller registers the sudden jump in speed and fires two servo motors simultaneously, slamming the heavy claws shut to trap the object (and potentially their strings). It's a test of communication, steady hands, and nerve, enhanced by a Bluetooth "Game Master" app that lets a third person secretly arm or manually trigger the trap.]`
 
 ---
 
