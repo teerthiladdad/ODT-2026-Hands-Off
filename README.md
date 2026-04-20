@@ -59,13 +59,13 @@ By the final review, this README should clearly show:
 | Name | Primary Role | Secondary Role | Strengths Brought to the Project |
 |---|---|---|---|
 | `[Aarav Srivastava]` | `[Coding / App / Mechanics]` | `[Testing]` | `[Logic design, MicroPython scripting, debugging hardware-software bridges]` |
-| `[Teerthi Laddad]` | `[Electronics / Coding / App / Fabrication / Mechanics]` | `[Role]` | `[Write here]` |
+| `[Teerthi Laddad]` | `[Electronics / Fabrication / Mechanics]` | `[Role]` | `[Write here]` |
 
 ## 1.3 Project Title
 `Hands Off`
 
 ## 1.4 One-Line Pitch
-`[A two-player cooperative game where players must use strings to smoothly extract a bomb from a robotic claw before it detects their movement and snaps shut.]`
+`[A two-player cooperative game where players must use strings to smoothly extract a bomb from a mechanical claw before it detects their movement and snaps shut.]`
 
 ## 1.5 Expanded Project Idea
 In 1–2 paragraphs, explain:
@@ -75,10 +75,11 @@ In 1–2 paragraphs, explain:
 - what technologies are involved.
 
 **Response:**  
-"THE CLAW SNATCHER" is a physical tabletop game inspired by the tension of bomb-defusal or the classic "Operation" game. At the center of the table sits an open, geometric MDF claw mechanism. Inside rests a 3D-printed artifact. Two players must each take one end of a string, loop it through the artifact, and lift it straight up together.
+This project is a physical, interactive game built around tension, balance, and coordination between two players. At the center of the setup is a claw-like structure holding an object suspended by strings. Each player controls one string and must work together to lift the object smoothly within a time limit.
 
-The twist? It's not just about lifting it; it's about smoothness. An ultrasonic sensor hidden beneath the artifact measures the variation in distance. If the players' hands shake, or if they try to yank the object out abruptly, the ESP32 microcontroller registers the sudden jump in speed and fires two servo motors simultaneously, slamming the heavy claws shut to trap the object (and potentially their strings). It's a test of communication, steady hands, and nerve, enhanced by a Bluetooth "Game Master" app that lets a third person secretly arm or manually trigger the trap.
+The challenge lies in maintaining controlled motion, any sudden or uneven movement risks failure. If the players succeed, they retrieve the object safely. If they fail or run out of time, a servo-triggered mechanism activates, causing the claw to close and trap the object.
 
+The experience is designed to feel tense, slightly stressful, and engaging, encouraging communication and repeated attempts. It combines mechanical design, electronics, and physical interaction.
 ---
 
 # 2. Philosophy Fit
@@ -103,7 +104,12 @@ Answer the following:
 - Why would someone want to try it again?
 
 **Response:**  
-`[We are creating a high-stakes, nerve-wracking cooperative experience. We want the players to feel the physical tension of trying to stay perfectly still while coordinating with a partner. They will want to try it again because the failure condition is immediate and dramatic (the loud SNAP of the claws), triggering a "let's try one more time, I know we can do it smoother" response.]`
+`[What is the experience?
+A cooperative two-player retrieval game where both players must move a prop bomb out of a mechanical claw trap using only gentle, coordinated pulling on two attached strings, without triggering the snap mechanism.
+What do you want the player or participant to feel?
+Nervous, focused, and connected to their partner. Success should feel like a genuine release of tension. Failure should provoke laughter and the immediate desire to try again.
+Why would someone want to try it again?
+Because losing feels like almost succeeding, and the physicality of the mechanism makes each round feel fresh. Players will want to beat their own coordination and improve their technique.]`
 
 ## 2.3 Design Persona
 Complete the sentence below:
@@ -111,7 +117,7 @@ Complete the sentence below:
 > We are designing this project as if we are a small creative studio making a **[toy / game / playable object / interactive experience]** for **[children / teens / adults / classmates / exhibition visitors / mixed audience]**.
 
 **Response:**  
-`[We are designing this project as if we are a small creative studio making a playable tabletop object for our classmates and exhibition visitors.Write here]`
+`[We are designing this project as if we are a small creative studio making a playable kinetic installation for classmates and exhibition visitors who want a quick, memorable, high-stakes cooperative experience.]`
 
 ---
 
@@ -123,14 +129,14 @@ List what inspired the project.
 | Source Type | Title / Link | What Inspired You |
 |---|---|---|
 | `[Movie Scene]` | `[Indiana Jones: Raiders of the Lost Ark (Idol Scene)]` | `[The concept of replacing/stealing an object off a weight/pressure plate without triggering the environment.]` |
-| `[Toy / Board game / App / Video / Website / Object]` | `[Link or title]` | `[What did you learn or borrow?]` |
-| `[Toy / Board game / App / Video / Website / Object]` | `[Link or title]` | `[What did you learn or borrow?]` |
+| `[Object]` | `[Mechanical claw machines (arcade)]` | `[The visual drama of a claw opening and closing]` |
+| `[Toy]` | `[Fishing game(with fishing rod where you have to pick up the fishes)]` | `[The concept of snatching something with time as a variable]` |
 
 ## 3.2 Original Twist
 What makes your project original?
 
 **Response:**  
-`[Instead of a simple "distance" trigger (like a motion sensor light), our trap uses an algorithm to calculate acceleration/smoothness. You are allowed to move the object, but if the current_distance minus the previous_distance exceeds our 2.5cm threshold in a fraction of a second, the trap fires.]`
+`[Most tension games rely on digital feedback or buzzers. Our project uses a fully physical consequence, a weighted claw that mechanically snaps shut, making the stakes feel tangible and real. The two-string cooperative input (rather than a single player) adds a coordination layer that is unusual in physical game design.]`
 
 ---
 
@@ -146,7 +152,7 @@ Examples:
 - move object → sensor detects → sound/light response → player reacts
 
 **Response:**  
-`[Loop string into object -> Communicate -> Lift smoothly and slowly -> Win (if lifted past 15cm) OR Lose (sensor detects variation and snaps claw) -> Reset via thonny.]`
+`[hold strings → coordinate movement → lift object → maintain stability → beat timer → win OR trigger claw → lose]`
 
 ## 4.2 Intended Player / Audience
 
@@ -155,28 +161,28 @@ Examples:
 | Who is this for? | `[Anyone who enjoys physical puzzle/skill games.]` |
 | Age range | `[10+ (Requires fine motor skills)]` |
 | Solo or multiplayer | `[2-Player Co-op ]` |
-| Expected duration of one round | `[30 to 60 seconds]` |
-| What should the player feel? | `[Anxiety, focus, and then sudden shock or relief.]` |
-| Is explanation required before use? | `[Yes, a brief 10-second explanation of the "smoothness" rule.]` |
+| Expected duration of one round | `[10 to 15 seconds]` |
+| What should the player feel? | `[Nervous excitement, focus, shared responsibility]` |
+| Is explanation required before use? | `[Minimal- one sentence of instruction is enough]` |
 
 ## 4.3 Player Journey
 Describe exactly how a player will use the project.
 
-1. **Approach:** `[Players see the open wooden claw with the glowing artifact resting inside.]`
-2. **Start:** `[The Game Master uses the app to "Arm" the trap.]`
-3. **First Action:** `[Players carefully thread their hooks/strings into the artifact's side rings.]`
-4. **Main Interaction:** `[Players pull the strings taut and slowly lift upwards, talking to each other to keep the object perfectly level.]`
-5. **System Response:** `[The ultrasonic sensor pings the object 10 times a second, measuring the speed of the lift.]`
-6. **Win / Lose / End Condition:** `[If they lift it 15cm high smoothly, they win. If they twitch, the claw snaps shut instantly.]`
-7. **Reset:** `[Game Master hits "Reset" on the app, servos open the claws, and the object is placed back inside.]`
+1. **Approach:** `[The player sees a black-and-gold claw structure with a bomb-like object resting inside an open claw. Two strings dangle from it.]`
+2. **Start:** `[A second player picks up the other string. The timer is started.]`
+3. **First Action:** `[Both players begin gently pulling their strings upward together.]`
+4. **Main Interaction:** `[Players must coordinate the lift — moving smoothly and slowly to avoid triggering the ultrasonic sensor threshold that signals abrupt motion.]`
+5. **System Response:** `[The ESP32 monitors motion data from the ultrasonic sensor. If movement is too abrupt, or if the timer runs out, the servo releases the counterweight, the ring rises, and the claw snaps shut around the bomb.]`
+6. **Win / Lose / End Condition:** `[ Win condition-The bomb is lifted clear of the claw before the timer expires without triggering the snap mechanism. Lose condition-Abrupt motion detected, or time runs out, servo fires, claw closes.]`
+7. **Reset:** `[The counterweight is manually re-hooked, the claw is opened, the bomb is replaced, and the next round begins.]`
 
 ## 4.4 Rules of Play
 If your project is a game, list the rules clearly.
 
-- `[Rule 1: Players must use only the provided strings, no hands inside the claw zone.]`
-- `[Rule 2: The lift must be perfectly smooth. Sudden yanks trigger the trap.]`
-- `[Rule 3: If the claw closes and traps the object, the round is a failure.]`
-- `[Rule 4]`
+- `[Rule 1: Both players must hold one string each — you may not hold both..]`
+- `[Rule 2: Lift the bomb upward together without jerking or sudden movements.]`
+- `[Rule 3: The bomb must be fully lifted clear before the timer ends.]`
+- `[Rule 4: If the claw closes, you lose that round]`
 
 ---
 
@@ -185,11 +191,11 @@ If your project is a game, list the rules clearly.
 ## 5.1 Definition of “Playable”
 Your project will be considered complete only if these conditions are met.
 
-- [ ] `[Condition 1 The ultrasonic sensor accurately detects the object's distance.]`
-- [ ] `[Condition 2 The code successfully calculates distance variation and ignores startup glitches.]`
-- [ ] `[Condition 3 Both servo motors move simultaneously to 90 degrees when triggered.]`
-- [ ] `[Condition 4 The physical pushrod mechanism closes the heavy MDF claws without stalling the motors.]`
-- [ ] `[Condition 5]`
+- [ ] `[Condition 1: The claw opens and closes reliably using the ring-and-pulley mechanism]`
+- [ ] `[Condition 2:The servo releases the counterweight on a trigger signal from the ESP32]`
+- [ ] `[Condition 3:The ultrasonic sensor successfully detects abrupt upward motion and sends a trigger.]`
+- [ ] `[Condition 4;A round can be completed from start to finish without physical intervention]`
+- [ ] `[Condition 5:The mechanism can be reset and replayed at least ten times without any mechanical failure]`
 
 ## 5.2 Minimum Viable Version
 What is the smallest version of this project that still delivers the core experience?
@@ -201,8 +207,8 @@ What is the smallest version of this project that still delivers the core experi
 What features are nice to have but not essential?
 
 - `[Stretch feature 1 Dual-servo synchronized movement for heavier claws.]`
-- `[Stretch feature 2 External 5V power supply to prevent ESP32 brownouts.]`
-- `[Stretch feature 3]`
+- `[Stretch feature 2 Audible countdown buzzer]`
+- `[Stretch feature 3 Digital score display showing fastest successful retrieval time]`
 
 ---
 
@@ -219,9 +225,9 @@ Check all that apply.
 - [ ] Sound-based
 - [ ] Light-based
 - [ ] Screen/UI-based
-- [ ] Fabricated structure
-- [ ] Game logic based
-- [ ] Installation / tabletop experience
+- [x] Fabricated structure
+- [x] Game logic based
+- [x] Installation / tabletop experience
 - [ ] Other: `[Write here]`
 
 ## 6.2 High-Level System Description
@@ -241,10 +247,12 @@ Include:
 
 | System Part | Type | What It Does |
 |---|---|---|
-| `[HC-SR04 Ultrasonic]` | Input | `[Constantly measures the height of the object.]` |
-| `[ESP32]` | Processing | `[Calculates speed variation, filters glitches, handles BLE.]` |
-| `[2x SG90 Servos]` | Output | `[Rotate to actuate the physical claw mechanism.]` |
-| `[Mechanical Assembly]` | Physical Action | `[Rigidly push inward to trap the object.]` |
+| `[Ultrasonic Sensor]` | Input | `[Constantly measures the height of the object.]` |
+| `[ESP32]` | Processing | `[Reads sensor, runs timer, evaluates trigger threshold, fires servo]` |
+| `[Servo motors]` | Output | `[Releases counterweight latch when triggered]` |
+| `[Counterweight + Pulley]` | Physical Action | `[Drops when released; pulls sleeve ring upward]` |
+| `[Sliding Ring + Wire Linkage]` | Physical Action | `[Translates upward ring motion into closing claw arms]` |
+| `[MDF Claw Assembly]` | Physical Action | `[Closes around the bomb prop, ending the round]` |
 
 ---
 
@@ -276,10 +284,10 @@ Add a sketch with labels showing:
 
 | Dimension | Value |
 |---|---|
-| Length | `[Write here]` |
-| Width | `[Write here]` |
-| Height | `[Write here]` |
-| Estimated weight | `[Write here]` |
+| Length | `[10- 12 cm]` |
+| Width | `[10- 12 cm]` |
+| Height | `[35- 40 cm]` |
+| Estimated weight | `[1 kg]` |
 
 ---
 
@@ -293,19 +301,20 @@ Check all that apply.
 - [ ] Belt drives
 - [x] Linkages
 - [x] Hinges
-- [ ] Shafts
+- [x] Shafts
 - [ ] Springs
 - [ ] Bearings
 - [ ] Wheels
-- [ ] Sliders
-- [ ] Levers
+- [x] Sliders
+- [x] Levers
 - [ ] Not applicable
 
 ## 8.2 Mechanical Description
 Describe the mechanism and what it is meant to do.
 
 **Response:**  
-`[We moved away from a "string and elastic" tendon mechanism because pulling heavy MDF was too difficult and caused the claws to open slowly. We switched to a Rigid Pushrod Mechanism. Stiff metal wire connects the servo horn to the inner edge of the claw. When the servo rotates to 90 degrees, it rigidly pushes the claw shut; returning to 0 degrees pulls it open.]`
+`[The claw uses an umbrella-rib-style mechanism. Six MDF arms are arranged radially and pinned at pivot points to a central vertical column (PVC pipe). Each arm is connected by a thin wire or cord to a hollow cylinder sleeve that slides along the PVC pipe. When the sleeve is pushed up, the wires pull the tips of the arms inward, closing the claw. When the sleeve drops, the arms fall open under gravity.
+The sleeve is connected via cord over a pulley to a counterweight. In the ready state, the servo holds the counterweight in an elevated position, keeping the sleeve down (claw open). When the servo fires, the counterweight drops, the cord pulls the sleeve upward, and the claw closes.]`
 
 ## 8.3 Motion Planning
 If something moves, explain:
@@ -316,7 +325,15 @@ If something moves, explain:
 - what could go wrong.
 
 **Response:**  
-`[Two servos actuate. Each servo pushes a stiff wire 2cm outward. This linear push against a 45-degree angled base hinge causes the 10cm MDF claw to arc inward by about 60 degrees, meeting in the center to form a cage.]`
+`[The primary movement in the system involves the sleeve, the claw arms, and the suspended object. The sleeve is positioned around a vertical PVC pipe and can slide up and down along its length. Each segment of the claw is connected to this sleeve through wires, forming an umbrella-like mechanism.
+
+During gameplay, the object at the center is lifted by the players through controlled tension in the strings. As the players pull, the object moves upward, and its motion depends on how evenly and smoothly the forces are applied. Any imbalance causes unstable or jerky movement, increasing the difficulty of control.
+
+Once the time limit is reached, a servo motor is activated. The servo releases a mechanism connected to a weighted pulley system. As the weight drops due to gravity, it pulls on the connected system, causing the sleeve to move upward along the PVC pipe. This upward motion of the sleeve pulls the wires attached to each claw segment, resulting in the claw arms closing inward.
+
+The speed of this closing motion is determined by the weight and the friction between the sleeve and the pipe. If the motion is too fast, the claw may snap shut abruptly; if too slow or if friction is too high, the mechanism may not function smoothly.
+
+Potential issues include excessive friction causing the sleeve to get stuck, uneven tension in the wires leading to asymmetrical claw movement, and uncontrolled weight drop resulting in harsh or inconsistent closing behavior. Proper alignment and surface finishing are critical to ensuring smooth and reliable motion.]`
 
 ## 8.4 Simulation / CAD / Animation Before Making
 If your project includes mechanical motion, document the digital planning before fabrication.
@@ -340,15 +357,16 @@ What changed after the CAD, animation, or simulation stage?
 
 | Component | Quantity | Purpose |
 |---|---:|---|
-| `[ESP32]` | `1` | `[Main controller]` |
-| `[HC-SR04 Sensor]` | `[1]` | `[Ultrasonic distance detection]` |
-| `[SG90 Micro Servo]` | `[2]` | `[Claw actuation]` |
+| `[ESP32]` | `1` | `[Main controller- reads sensor, runs timer, fires servo]` |
+| `[HC-SR04 Sensor]` | `[1]` | `[Detects bomb position and rate of motion change]` |
+| `[SG90 Micro Servo]` | `[2]` | `[Holds and releases counterweight]` |
+| `[Power Supply]` | `[1]` | `[provide power to all electronics]` |
 
 ## 9.2 Wiring Plan
 Describe the main electrical connections.
 
 **Response:**  
-`[The ESP32 is powered via USB. The Servos are powered directly from the 5V Power Supply module. Crucial: The Ground of the 5V supply is wired to the Ground of the ESP32 to ensure the PWM data signal is read correctly.
+`[The ESP32 is powered via USB. The Servos are powered directly from the 5V Power Supply module. The Ground of the 5V supply is wired to the Ground of the ESP32 to ensure the PWM data signal is read correctly.
 Ultrasonic: TRIG to Pin 5, ECHO to Pin 18.
 Servos: Left Signal to Pin 21, Right Signal to Pin 22.]`
 
@@ -362,9 +380,9 @@ Insert a hand-drawn or software-made circuit diagram.
 
 | Question | Response |
 |---|---|
-| Power source | `[USB / battery / adapter / other]` |
-| Voltage required | `[Write here]` |
-| Current concerns | `[Write here]` |
+| Power source | `[Power supply module]` |
+| Voltage required | `[5V for servo and HC-SR04; ESP32 regulated internally to 3.3V]` |
+| Current concerns | `[Servo draw at stall can spike]` |
 | Safety concerns | `[Write here]` |
 
 ---
@@ -375,8 +393,8 @@ Insert a hand-drawn or software-made circuit diagram.
 
 | Tool / Platform | Purpose |
 |---|---|
-| `[Thonny / MicroPython]` | `[Writing the core logic and flashing the ESP32.]` |
-| `[Tool]` | `[Purpose]` |
+| `[Thonny / MicroPython]` | `[Writing the core code]` |
+| `[Illustrator]` | `[create file for laser cutting]` |
 
 ## 10.2 Software Logic
 Describe what the code must do.
