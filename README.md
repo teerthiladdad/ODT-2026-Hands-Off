@@ -58,8 +58,8 @@ By the final review, this README should clearly show:
 
 | Name | Primary Role | Secondary Role | Strengths Brought to the Project |
 |---|---|---|---|
-| `[Aarav Srivastava]` | `[Coding / App / Mechanics]` | `[Testing]` | `[Logic design, MicroPython scripting, debugging hardware-software bridges]` |
-| `[Teerthi Laddad]` | `[Electronics / Fabrication / Mechanics]` | `[Role]` | `[Write here]` |
+| `[Aarav Srivastava]` | `[Coding / App ]` | `[Mechanics/ Testing]` | `[MicroPython scripting, debugging hardware-software bridges]` |
+| `[Teerthi Laddad]` | `[Electronics / Fabrication / Mechanics]` | `[Testing]` | `[Hands-on fabrication, mechanical assembly, system integration, electronics implementation, motion optimization, surface finishing, iterative prototyping, testing & debugging, problem-solving, precision alignment, reliability improvement]` |
 
 ## 1.3 Project Title
 `Hands Off`
@@ -80,6 +80,7 @@ This project is a physical, interactive game built around tension, balance, and 
 The challenge lies in maintaining controlled motion, any sudden or uneven movement risks failure. If the players succeed, they retrieve the object safely. If they fail or run out of time, a servo-triggered mechanism activates, causing the claw to close and trap the object.
 
 The experience is designed to feel tense, slightly stressful, and engaging, encouraging communication and repeated attempts. It combines mechanical design, electronics, and physical interaction.
+
 ---
 
 # 2. Philosophy Fit
@@ -487,8 +488,14 @@ Insert a sketch or screenshot of the app interface.
 | Item | Quantity | In Kit? | Need to Buy? | Estimated Cost | Material / Spec | Why This Choice? |
 |---|---:|---|---|---:|---|---|
 | `[ESP32]` | `1` | `Yes` | `No` |
+| `[Ultrasonic sensor]` | `1` | `Yes` | `No` |
+| `[power supply module]` | `1` | `Yes` | `No` |
+| `[servo motor]` | `2` | `Yes` | `No` |
 | `[MDF Board]` | `[1]` | `[Yes]` | `[No]` |
-| `[Item]` | `[Qty]` | `[Yes/No]` | `[Yes/No]` | `[Cost]` | `[Spec]` | `[Reason]` |
+| `[pvc pipe]` | `[1]` | `[Yes]` | `[No]` |
+| `[nylon cord]` | `[2 mtr]` | `[No]` | `[Yes]` | `[10 rupees]` | `[Nylon]` | `[stronger, able to support the weights ]` |
+| `[spray paint]` | `[1]` | `[No]` | `[Yes]` | `[250 rupees]` | `[acrylic]` | `[cover up the whole model and hide uneveness]` |
+| `[gold acrylic]` | `[1]` | `[No]` | `[Yes]` | `[250 rupees]` | `[acrylic]` | `[add a little defining detail to the model]` |
 
 ## 12.2 Material Justification
 Explain why you selected your main materials and components.
@@ -500,31 +507,34 @@ Examples:
 - Why bearing instead of a plain shaft hole?
 
 **Response:**  
-`[Write here]`
+`[MDF over cardboard: MDF is rigid, laser-cuttable to precision, and holds fasteners. Cardboard would deform under repeated claw-closing forces.
+PVC pipe over wooden dowel: PVC can be sanded to a very smooth finish, which is critical for the sleeve to slide freely. A wooden dowel would have grain and splinter risk.
+Servo over dc motor: A servo is controllable (angle-based) and runs on lesser power compared to the dc motor.]`
 
 ## 12.3 Items to Purchase Separately
 
 | Item | Why Needed | Purchase Link | Latest Safe Date to Procure | Status |
 |---|---|---|---|---|
-| `[Item]` | `[Reason]` | `[Link]` | `[Date]` | `[Pending / Ordered / Received]` |
-| `[Item]` | `[Reason]` | `[Link]` | `[Date]` | `[Pending / Ordered / Received]` |
+| `[spray paint]` | `[cover up the whole model and hide uneveness]` | `[Link]` | `[19-04-2026]` | `[Received]` |
+| `[gold acrylic paint]` | `[add a little defining detail to the model]` | `[Link]` | `[19-04-2026]` | `[Received]` |
+| `[nylon cord]` | `[hold the counterweights]` | `[bought in person (stationary)]` | `[17-04-2026]` | `[Received]` |
 
 ## 12.4 Budget Summary
 
 | Budget Item | Estimated Cost |
 |---|---:|
-| Electronics | `[Cost]` |
-| Mechanical parts | `[Cost]` |
-| Fabrication materials | `[Cost]` |
-| Purchased extras | `[Cost]` |
-| Contingency | `[Cost]` |
-| **Total** | `[Cost]` |
+| Electronics | `[0]` |
+| Mechanical parts | `[0]` |
+| Fabrication materials | `[510]` |
+| Purchased extras | `[10]` |
+| Contingency | `[0]` |
+| **Total** | `[520]` |
 
 ## 12.5 Budget Reflection
 If your cost is too high, what can be simplified, removed, substituted, or shared?
 
 **Response:**  
-`[Write here]`
+`[The spray paint can be replaced by a simple bolltle of acrylic paint and painted manually.]`
 
 ---
 
@@ -541,32 +551,32 @@ Include:
 - how documentation will be maintained.
 
 **Response:**  
-`[Write here]`
+`[Tasks are divided by skill: Aarav leads code; Teerthi leads mechanical build and fabrication. Design decisions are made together. Progress is checked at the start of each class session. If a task is delayed, the other team member supports to unblock. Documentation is updated by whoever completes each task, reviewed together at end of each week.]`
 
 ## 13.2 Task Breakdown
 
 | Task ID | Task | Owner | Estimated Hours | Deadline | Dependency | Status |
 |---|---|---|---:|---|---|---|
-| T1 | `[Finalize concept]` | `[Name]` | `2` | `[Date]` | `None` | `To Do` |
-| T2 | `[Complete BOM]` | `[Name]` | `1` | `[Date]` | `T1` | `To Do` |
-| T3 | `[Test electronics]` | `[Name]` | `2` | `[Date]` | `T1` | `To Do` |
-| T4 | `[Build structure]` | `[Name]` | `4` | `[Date]` | `T1` | `To Do` |
-| T5 | `[Write control code]` | `[Name]` | `4` | `[Date]` | `T3` | `To Do` |
-| T6 | `[Integrate system]` | `[Name]` | `4` | `[Date]` | `T4, T5` | `To Do` |
-| T7 | `[Playtest]` | `[Name]` | `2` | `[Date]` | `T6` | `To Do` |
-| T8 | `[Refine and document]` | `[Name]` | `3` | `[Date]` | `T7` | `To Do` |
+| T1 | `[Finalize concept]` | `[Teerthi]` | `2` | `[end of week 1]` | `None` | `done` |
+| T2 | `[Complete BOM]` | `[Teerthi]` | `1` | `[end of week 2]` | `T1` | `done` |
+| T3 | `[Test electronics]` | `[Both]` | `2` | `[end of week 3]` | `T1` | `done` |
+| T4 | `[Build structure]` | `[Teerthi]` | `6` | `[end of week 3]` | `T1` | `done` |
+| T5 | `[Write control code]` | `[Aarav]` | `3` | `[mid week 4]` | `T3` | `done` |
+| T6 | `[Integrate system]` | `[both]` | `4` | `[mid week 4]` | `T4, T5` | `done` |
+| T7 | `[Playtest]` | `[both]` | `2` | `[Date]` | `[end of week 4]` | `To Do` |
+| T8 | `[Refine and document]` | `[Teerthi]` | `3` | `[end of week 4]` | `T7` | `To Do` |
 
 ## 13.3 Responsibility Split
 
 | Area | Main Owner | Support Owner |
 |---|---|---|
-| Concept and gameplay | `[Name]` | `[Name]` |
-| Electronics | `[Name]` | `[Name]` |
-| Coding | `[Name]` | `[Name]` |
-| App | `[Name]` | `[Name]` |
-| Mechanical build | `[Name]` | `[Name]` |
-| Testing | `[Name]` | `[Name]` |
-| Documentation | `[Name]` | `[Name]` |
+| Concept and gameplay | `[Teerthi]` | `[Aarav]` |
+| Electronics | `[Teerthi]` | `[Aarav]` |
+| Coding | `[Aarav]` | `[Name]` |
+| App | `[na]` | `[na]` |
+| Mechanical build | `[Teerthi]` | `[Aarav]` |
+| Testing | `[both]` | `[Name]` |
+| Documentation | `[both]` | `[Name]` |
 
 ---
 
@@ -576,33 +586,33 @@ Include:
 
 ### Week 1 — Plan and De-risk
 Expected outcomes:
-- [ ] Idea finalized
-- [ ] Core interaction decided
+- [x] Idea finalized
+- [x] Core interaction decided
 - [ ] Sketches made
-- [ ] BOM completed
-- [ ] Purchase needs identified
-- [ ] Key uncertainty identified
-- [ ] Basic feasibility tested
+- [x] BOM completed
+- [x] Purchase needs identified
+- [x] Key uncertainty identified
+- [x] Basic feasibility tested
 
 ### Week 2 — Build Subsystems
 Expected outcomes:
-- [ ] Electronics tests completed
-- [ ] CAD / structure planning completed
+- [x] Electronics tests completed
+- [x] CAD / structure planning completed
 - [ ] App UI started if needed
-- [ ] Mechanical concept tested
-- [ ] Main subsystems partially working
+- [x] Mechanical concept tested
+- [x] Main subsystems partially working
 
 ### Week 3 — Integrate
 Expected outcomes:
-- [ ] Physical body built
-- [ ] Electronics integrated
-- [ ] Code connected to hardware
+- [x] Physical body built
+- [x] Electronics integrated
+- [x] Code connected to hardware
 - [ ] App connected if required
 - [ ] First playable version exists
 
 ### Week 4 — Refine and Finish
 Expected outcomes:
-- [ ] Technical bugs reduced
+- [x] Technical bugs reduced
 - [ ] Playtesting completed
 - [ ] Improvements made
 - [ ] Documentation completed
@@ -625,16 +635,16 @@ Expected outcomes:
 
 | Risk | Type | Likelihood | Impact | Mitigation Plan | Owner |
 |---|---|---|---|---|---|
-| `[Example: Bluetooth disconnects]` | `Technical` | `Medium` | `High` | `[Fallback interaction / simplify connection flow]` | `[Name]` |
-| `[Example: Structure breaks during play]` | `Mechanical` | `Medium` | `High` | `[Reinforce joints / change material]` | `[Name]` |
-| `[Risk]` | `[Technical / Material / Time / Gameplay]` | `[Low/Medium/High]` | `[Low/Medium/High]` | `[Plan]` | `[Name]` |
-| `[Risk]` | `[Type]` | `[Low/Medium/High]` | `[Low/Medium/High]` | `[Plan]` | `[Name]` |
+| `[HC-SR04 gives noisy readings causing false triggers]` | `Technical` | `Medium` | `High` | `[Average last 5 readings; tune threshold conservatively]` | `[Aarav]` |
+| `[Counterweight force insufficient to close all arms fully]` | `Mechanical` | `Medium` | `High` | `[increase weight if needed]` | `[Teerthi]` |
+| `[Sleeve doesn't slide freely enough to close claw]` | `[Mechanical]` | `[Medium]` | `[High]` | `[Plan]` | `[Teerthi]` |
+
 
 ## 15.2 Biggest Unknown Right Now
 What is the single biggest uncertainty in your project at this stage?
 
 **Response:**  
-`[Write here]`
+`[Whether the sleeve-on-PVC-pipe mechanism will slide reliably under gravity without the players needing to manually push it. The mechanism only works if friction is low enough that the counterweight alone can drive the sleeve upward.]`
 
 ---
 
@@ -644,20 +654,20 @@ What is the single biggest uncertainty in your project at this stage?
 
 | What Needs Testing | How You Will Test It | Success Condition |
 |---|---|---|
-| `[Bluetooth connection]` | `[Method]` | `[What counts as success?]` |
-| `[Mechanism movement]` | `[Method]` | `[What counts as success?]` |
-| `[Sensor behavior]` | `[Method]` | `[What counts as success?]` |
-| `[App communication]` | `[Method]` | `[What counts as success?]` |
+| `[Sleeve slides freely on PVC]` | `[Push sleeve by hand with/without counterweight attached]` | `[Sleeve travels full range with minimal counterweight]` |
+| `[Claw closes fully from sleeve travel]` | `[Attach claw arm wires; test full closure]` | `[All arms meet at centre; no arm jams]` |
+| `[HC-SR04 distance reading]` | `[Serial monitor; measure known distances with ruler]` | `[Readings within ±1cm at 5–25cm range]` |
+| `[Full system trigger chain]` | `[Simulate abrupt motion, confirm claw closes]` | `[Claw closes within 1 second of trigger]` |
 
 ## 16.2 Playtesting Plan
 
 | Question | How You Will Check |
 |---|---|
-| Do players understand what to do? | `[Method]` |
-| Is the interaction satisfying? | `[Method]` |
-| Do players want another turn? | `[Method]` |
-| Is the challenge balanced? | `[Method]` |
-| Is the response clear and immediate? | `[Method]` |
+| Do players understand what to do? | `[Observe first 10 seconds without explanation; note if they pick up the strings spontaneously]` |
+| Is the interaction satisfying? | `[Ask players immediately after: "Did the closing feel dramatic?"]` |
+| Do players want another turn? | `[Note whether players ask to replay without prompting]` |
+| Is the challenge balanced? | `[Track success/failure ratio over 10 rounds; target ~40–60% success rate]` |
+| Is the response clear and immediate? | `[Players should be able to identify exactly what caused the claw to close]` |
 
 ## 16.3 Testing and Debugging Log
 
@@ -690,7 +700,12 @@ Include:
 - revisions.
 
 **Response:**  
-`[Write here]`
+`[Claw Arms (MDF, laser cut): Arms were designed in illustrator and laser cut from 3mm MDF. Arms were dry-fitted to the central column before wire attachment.
+Sliding Ring Mechanism: A hollow PVC coupling was cut to length and test-fit on the PVC pipe. The pipe was sanded progressively until the sleeve moved freely with minimal force. Wire guides were drilled into the sleeve and each arm.
+Wire Linkage: metal wires was threaded from all claw arm's base through a guide ring at the sleeve. Tension was adjusted so all arms close simultaneously.
+Pulley and Counterweight: A fixed pulley was mounted at the top of the structure. Cord runs from the sleeve, over the pulley, down to the counterweight. The servo holds the counterweight via a hooked latch at its horn.
+Electronics: HC-SR04 positioned above the bomb resting position, facing upwards. Servo mounted adjacent to pulley attachment point.
+Finishing: Full structure spray-painted matte black. Gold acrylic applied with a fine brush to claw arm edges, bolt heads, and the bomb prop for visual contrast.]`
 
 ## 17.2 Build Photos
 Add photos throughout the project.
@@ -726,17 +741,17 @@ Example:
 Describe the final version of your project.
 
 **Response:**  
-`[We successfully built "Hands Off". The final physical model uses a laser-cut hexagonal base with two large, hinged MDF claws. The artifact sits centrally over the HC-SR04. The dual-servo pushrod mechanism is incredibly snappy and violent (in a fun way), making the failure condition very satisfying. The Game Master app connects flawlessly via BLE.]`
+`[We successfully built "Hands Off". The final physical model uses a laser-cut hexagonal base with two large, hinged MDF claws. The artifact sits centrally over the HC-SR04. The dual-servo pushrod mechanism is incredibly snappy and violent (in a fun way), making the failure condition very satisfying.]`
 
 ## 18.2 What Works Well
 - `[Point 1 The acceleration logic. It feels perfectly tuned to catch shaky hands.]`
-- `[Point 2 The dual-servo pushrod mechanism. It handles the heavy MDF with ease.]`
-- `[Point 3]`
+- `[Point 2 The pushrod mechanism. It handles the heavy MDF with ease.]`
+- `[Point 3 The counterweight pulley system which is sure to give a precise snap.]`
 
 ## 18.3 What Still Needs Improvement
-- `[Point 1 The HC-SR04 sensor sometimes catches the side of the claw if it isn't aligned perfectly.]`
-- `[Point 2]`
-- `[Point 3]`
+- `[The HC-SR04 sensor sometimes catches the side of the claw if it isn't aligned perfectly.]`
+- `[The mechanical build in terms of overall precision could be better if made using precise measurements and materials.]`
+- `[The replicability of the project can be a little complex considering the mechanics and time constraints which could be improved upon.]`
 
 ## 18.4 What Changed From the Original Plan
 How did the project change from the initial idea?
@@ -765,7 +780,7 @@ What did you learn about:
 - integration?
 
 **Response:**  
-`[The biggest lesson was understanding Power and Ground. Learning that microcontrollers can "brown out" when motors pull too much current, and discovering that an external power supply won't work unless it shares a Ground line with the data source, was a massive "aha" moment that saved our project. Also, writing code that measures delta (change over time) rather than just absolute values made the sensor feel much "smarter."]`
+`[write here]`
 
 ## 19.3 Design Reflection
 What did you learn about:
