@@ -241,7 +241,10 @@ Include:
 - app interaction if any.
 
 **Response:**  
-`[The project is an electromechanical trap. An ultrasonic sensor sits at the base, looking straight up at an object. An ESP32 reads this sensor every 100ms. If the variation in distance spikes, the ESP32 sends a PWM signal to two SG90 servos. The servos are connected to MDF claws via rigid wire pushrods. When the servos rotate, they push the rods, snapping the claws shut. An MIT App Inventor app connects to the ESP32 via BLE to send Arm/Disarm signals.]`
+`[Input: An ultrasonic sensor mounted on the structure monitors the position of the bomb prop. Sudden changes in distance (indicating an abrupt jerk) are read by the ESP32 as a trigger event. A manual start button begins the timer.
+Processing: The ESP32 runs a loop that continuously reads distance from the ultrasonic sensor and compares the rate of change against a tuned threshold. If the rate of change exceeds the threshold, or if the countdown timer reaches zero, the ESP32 fires the servo.
+Output: The servo motor releases a counterweight attached via cord to the sliding ring on the PVC pipe. The counterweight drops, pulling the ring upward, which closes the claw arms around the bomb.
+Physical Structure: A laser-cut MDF claw with six arms arranged radially. Each arm is linked by wire to a sliding hollow cylinder (sleeve) on a vertical sanded PVC pipe. Moving the sleeve up closes the claw; moving it down opens it. The sleeve is connected to a pulley carrying a counterweight held in place by the servo.]`
 
 ## 6.3 Input / Output Map
 
@@ -348,7 +351,7 @@ If your project includes mechanical motion, document the digital planning before
 What changed after the CAD, animation, or simulation stage?
 
 **Response:**  
-`[the original plan for the claw system did not work so we had to create a shaft system]`
+`[the original plan for the claw system being pushed by individual servos did not work so we had to create a shaft-sleeve system which is essentially using the mechanics of an umbrella where each arm of the claw is attached to a wire which is connected to a sleeve which moves up and down a shaft to open and close the shaft.]`
 
 ---
 
@@ -360,6 +363,8 @@ What changed after the CAD, animation, or simulation stage?
 |---|---:|---|
 | `[ESP32]` | `1` | `[Main controller- reads sensor, runs timer, fires servo]` |
 | `[HC-SR04 Sensor]` | `[1]` | `[Detects bomb position and rate of motion change]` |
+| `[buzzer]` | `[1]` | `[creates sound for when to start and when you win or lose accordingly]` |
+| `[neopixel ring]` | `[1]` | `[indicates when to start lifting the object. progess of how much the object has been lifted and win or lose ultimatum]` |
 | `[SG90 Micro Servo]` | `[2]` | `[Holds and releases counterweight]` |
 | `[Power Supply]` | `[1]` | `[provide power to all electronics]` |
 
@@ -368,8 +373,10 @@ Describe the main electrical connections.
 
 **Response:**  
 `[The ESP32 is powered via USB. The Servos are powered directly from the 5V Power Supply module. The Ground of the 5V supply is wired to the Ground of the ESP32 to ensure the PWM data signal is read correctly.
-Ultrasonic: TRIG to Pin 5, ECHO to Pin 18.
-Servos: Left Signal to Pin 21, Right Signal to Pin 22.]`
+Ultrasonic sensor: TRIG to Pin 5, ECHO to Pin 18.
+neopixel ring: input pin 4
+buzzer: input pin 14
+Servos: Left Signal to Pin 32, Right Signal to Pin 33.]`
 
 ## 9.3 Circuit Diagram
 Insert a hand-drawn or software-made circuit diagram.
@@ -384,7 +391,7 @@ Insert a hand-drawn or software-made circuit diagram.
 | Power source | `[Power supply module]` |
 | Voltage required | `[5V for servo and HC-SR04; ESP32 regulated internally to 3.3V]` |
 | Current concerns | `[Servo draw at stall can spike]` |
-| Safety concerns | `[Write here]` |
+| Safety concerns | `[ensure that the components do not draw too much power or insufficient power from the power supply- switch to a buck converter if necessary]` |
 
 ---
 
@@ -565,6 +572,8 @@ Insert a sketch or screenshot of the app interface.
 |---|---:|---|---|---:|---|---|
 | `[ESP32]` | `1` | `Yes` | `No` |
 | `[Ultrasonic sensor]` | `1` | `Yes` | `No` |
+| `[neopixel ring]` | `1` | `Yes` | `No` |
+| `[buzzer]` | `1` | `Yes` | `No` |
 | `[power supply module]` | `1` | `Yes` | `No` |
 | `[servo motor]` | `2` | `Yes` | `No` |
 | `[MDF Board]` | `[1]` | `[Yes]` | `[No]` |
@@ -818,7 +827,7 @@ Example:
 Describe the final version of your project.
 
 **Response:**  
-`[We successfully built "Hands Off". The final physical model uses a laser-cut hexagonal base with two large, hinged MDF claws. The artifact sits centrally over the HC-SR04. The dual-servo pushrod mechanism is incredibly snappy and violent (in a fun way), making the failure condition very satisfying.]`
+`[We successfully built "Hands Off". The final physical model uses a laser-cut hexagonal base with six large, hinged MDF claws which are moved using a shaft system operated by a pulley system. The artifact sits centrally over the ultrasonic sensor.]`
 
 ## 18.2 What Works Well
 - `[Point 1 The acceleration logic. It feels perfectly tuned to catch shaky hands.]`
@@ -834,7 +843,7 @@ Describe the final version of your project.
 How did the project change from the initial idea?
 
 **Response:**  
-`[We originally planned to use an artist's wooden mannequin hand and use fishing line tendons. We realized the wood was too heavy and the internal elastics were too stiff for our SG90 servos. We pivoted to designing our own geometric MDF claws and using a rigid pushrod linkage instead, which ultimately looked better and functioned 100x more reliably.]`
+`[We originally planned to use an artist's wooden mannequin hand and use fishing line tendons. We realized the wood was too heavy and the internal elastics were too stiff for our SG90 servos. We pivoted to designing our own geometric MDF claws and using a shaft-ring system instead, which ultimately looked better and functioned 100x more reliably.]`
 
 ---
 
@@ -886,7 +895,7 @@ Before submission, confirm that:
 - [X] Project description is complete
 - [X] Inspiration sources are included
 - [X] Player journey is written
-- [ ] Sketches are added
+- [x] Sketches are added
 - [X] BOM is complete
 - [X] Purchase list is complete
 - [X] Budget summary is complete
@@ -897,9 +906,9 @@ Before submission, confirm that:
 - [X] Weekly logs are updated
 - [X] Risk register is complete
 - [X] Testing log is updated
-- [x Playtesting notes are included
-- [ ] Build photos are included
-- [ ] Final reflection is written
+- [x] Playtesting notes are included
+- [x] Build photos are included
+- [x] Final reflection is written
 
 ---
 
