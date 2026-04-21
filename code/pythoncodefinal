@@ -1,0 +1,205 @@
+from machine import Pin, PWM
+import time
+from neopixel import NeoPixel  
+
+np_pin=Pin(4, Pin.OUT)
+np=NeoPixel(np_pin,16)
+
+# --- IMPORT FACULTY LIBRARIES ---
+from servo import Servo
+from hcsr04 import HCSR04
+
+# ==========================================
+# HARDWARE SETUP
+# ==========================================
+# 1. Servos
+servo_pin_1 = Pin(32, Pin.OUT)
+servo_pin_2 = Pin(33, Pin.OUT)
+mot1 = Servo(servo_pin_1)
+mot2 = Servo(servo_pin_2)
+
+# 2. Ultrasonic Sensor
+sensor = HCSR04(trigger_pin=5, echo_pin=18)
+
+# 3. NeoPixel Strip (16 LEDs on GPIO 4)
+NUM_LEDS = 16
+np_pin = Pin(4, Pin.OUT)                 
+strip = NeoPixel(np_pin, NUM_LEDS)       
+
+# 4. Passive Buzzer (GPIO 14)
+buzzer = PWM(Pin(14))
+buzzer.duty(0) # Keep quiet on boot
+
+# ==========================================
+# GAME DIFFICULTY SETTINGS (ULTRA HARD)
+# ==========================================
+TIME_LIMIT_SEC = 10.0     
+WIN_HEIGHT_CM = 12.0      
+LIFT_THRESHOLD_CM = 0.25  
+MAX_VARIATION_CM = 4.00
+
+GLITCH_HEIGHT = 40.0      
+CHECK_DELAY = 0.1       
+
+ANGLE_OPEN = 0 
+ANGLE_CLOSED = 90 
+
+# ==========================================
+# AUDIO & VISUAL FX FUNCTIONS
+# ==========================================
+def play_tone(freq, duration):
+    buzzer.freq(freq)
+    buzzer.duty(512) # 50% volume
+    time.sleep(duration)
+    buzzer.duty(0)
+
+def fx_game_start():
+    print("FX: Game Start Sequence")
+    for i in range(NUM_LEDS):
+        strip[i] = (50, 50, 0) # Dim Yellow
+        strip.write()
+        play_tone(400 + (i * 20), 0.05)
+    time.sleep(0.5)
+    strip.fill((0, 0, 0)) # Turn off lights
+    strip.write()
+
+def fx_update_progress(current_height):
+    # Clamp the height so we don't get math errors
+    safe_height = max(0.0, min(current_height, WIN_HEIGHT_CM))
+    
+    # Calculate how many LEDs should be lit up
+    percentage = safe_height / WIN_HEIGHT_CM
+    leds_to_light = int(percentage * NUM_LEDS)
+    
+    for i in range(NUM_LEDS):
+        if i < leds_to_light:
+            strip[i] = (0, 100, 150) # Cyan progress bar
+        else:
+            strip[i] = (0, 0, 0)
+    strip.write()
+
+def fx_game_over():
+    print("FX: Trap Snapped!")
+    strip.fill((255, 0, 0)) # Red
+    strip.write()
+    play_tone(300, 0.3)
+    play_tone(250, 0.3)
+    play_tone(200, 0.8)
+
+def fx_victory():
+    print("FX: Victory!")
+    for _ in range(3):
+        strip.fill((0, 255, 0)) # Green
+        strip.write()
+        play_tone(600, 0.1)
+        strip.fill((0, 0, 0))
+        strip.write()
+        play_tone(800, 0.1)
+    
+    strip.fill((0, 255, 0))
+    strip.write()
+    play_tone(1000, 0.6)
+
+# ==========================================
+# MAIN GAME PROCEDURE
+# ==========================================
+
+print("--- BOOTING CLAW SNATCHER (NIGHTMARE MODE) ---")
+strip.fill((0,0,0))
+strip.write()
+mot1.write_angle(ANGLE_OPEN)
+mot2.write_angle(ANGLE_OPEN)
+
+# --- CALIBRATION SEQUENCE ---
+print("Locking onto target...")
+baseline_distance = -1
+
+while(baseline_distance < 0 or baseline_distance > 10.0):
+    baseline_distance = sensor.distance_cm()
+    time.sleep(0.1)
+
+print('Target locked at baseline:', baseline_distance, 'cm')
+
+# Play the startup sound/lights now that we are calibrated
+fx_game_start()
+
+# ==========================================
+# PHASE 1: WAITING FOR LIFT-OFF
+# ==========================================
+print("\n>>> GAME ARMED: WAITING FOR MOVEMENT... <<<")
+
+game_started = False
+while(game_started == False):
+    current_distance = sensor.distance_cm()
+    
+    if 1.0 < current_distance < GLITCH_HEIGHT:
+        if current_distance > (baseline_distance + LIFT_THRESHOLD_CM):
+            game_started = True
+            print('\n[ALERT] LIFT-OFF DETECTED!')
+            print('>>>', TIME_LIMIT_SEC, 'SECONDS ON THE CLOCK. BE STEADY! <<<')
+            
+    time.sleep(0.1)
+
+# ==========================================
+# PHASE 2: THE COUNTDOWN & STEADY HAND TRAP
+# ==========================================
+start_ticks = time.ticks_ms()  
+previous_distance = baseline_distance 
+
+while(1):
+    elapsed_ms = time.ticks_diff(time.ticks_ms(), start_ticks)
+    elapsed_sec = elapsed_ms / 1000.0
+    time_left = TIME_LIMIT_SEC - elapsed_sec
+    
+    # TRAP 1: OUT OF TIME
+    if time_left <= 0:
+        print('\n[ALARM] TIME IS UP! ZERO SECONDS REMAINING!')
+        print('>>> SNAP! The claw closed! You lose. <<<')
+        mot1.write_angle(ANGLE_CLOSED)
+        mot2.write_angle(ANGLE_CLOSED)
+        fx_game_over()
+        break 
+        
+    current_distance = sensor.distance_cm()
+    
+    if 1.0 < current_distance < GLITCH_HEIGHT:
+        
+        variation = abs(current_distance - previous_distance)
+        
+        # TRAP 2: SHAKY HANDS
+        if variation > MAX_VARIATION_CM:
+            print('\n[ALARM] SHAKY HANDS! Variation spike of', variation, 'cm')
+            print('>>> SNAP! The claw closed! You lose. <<<')
+            mot1.write_angle(ANGLE_CLOSED)
+            mot2.write_angle(ANGLE_CLOSED)
+            fx_game_over()
+            break
+            
+        else:
+            # Safe lift! Update the lights and print progress
+            fx_update_progress(current_distance)
+            print('Height:', current_distance, 'cm  |  Time Left:', time_left, 'sec')
+            
+            # 3. WIN CONDITION
+            if current_distance >= WIN_HEIGHT_CM:
+                print('\n>>> SUCCESS! YOU ESCAPED WITH', time_left, 'SECONDS LEFT! <<<')
+                fx_victory()
+                break 
+                
+            previous_distance = current_distance
+            
+    time.sleep(CHECK_DELAY)
+
+# ==========================================
+# POST-GAME RESET SEQUENCE
+# ==========================================
+print('\nGAME OVER. Holding position...')
+time.sleep(3) # Let the players process their win or loss!
+
+print('Resetting claws to initial position...')
+mot1.write_angle(ANGLE_OPEN)
+mot2.write_angle(ANGLE_OPEN)
+strip.fill((0, 0, 0)) # Turn off the lights to signal it's ready
+strip.write()
+
+print('\nReady for next round. Restart script to play again.')
