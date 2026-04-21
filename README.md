@@ -417,7 +417,23 @@ Include:
 - reset behavior.
 
 **Response:**  
-`[The code boots up and runs a calibration sequence to ignore startup sensor glitches (Ghost echoes). It then enters a while loop, checking the distance. It calculates variation = abs(current_distance - previous_distance). If variation > 2.5, it fires the servos. It also utilizes hardware interrupts to listen for BLE strings from the mobile app to override the game state.]`
+`[Startup Behaviour:
+The program initializes all required libraries and hardware components, including servos, ultrasonic sensor, NeoPixel LEDs, and buzzer. The system starts in a neutral state with LEDs off and claws open (0°).
+
+Input Handling & Sensor Reading:
+Distance is continuously measured using the ultrasonic sensor. During calibration, a stable reading below 10 cm is recorded as the baseline. Invalid or noisy readings are ignored.
+
+Decision Logic:
+The system waits for lift-off, detected when distance exceeds the baseline by 0.25 cm. A 10-second game timer then begins. The player loses if time runs out or if movement variation exceeds 2.0 cm. The player wins if the object reaches 12 cm height.
+
+Output Behaviour:
+Servos control the claw (open during play, close on failure). LEDs and buzzer provide feedback: start animation, progress indication, red for failure, and green for success.
+
+Communication Logic:
+Key events (e.g., lift-off detection) are printed for debugging via serial output.
+
+Reset Behaviour:
+After the game ends, the system pauses for 3 seconds, reopens the claws, turns off LEDs, and resets to a ready state.]`
 
 ## 10.3 Code Flowchart
 Insert a flowchart showing your code logic.
@@ -831,7 +847,7 @@ Describe the final version of your project.
 
 ## 18.2 What Works Well
 - `[Point 1 The acceleration logic. It feels perfectly tuned to catch shaky hands.]`
-- `[Point 2 The pushrod mechanism. It handles the heavy MDF with ease.]`
+- `[Point 2 The shaft-sleeve mechanism. It handles the heavy MDF with ease.]`
 - `[Point 3 The counterweight pulley system which is sure to give a precise snap.]`
 
 ## 18.3 What Still Needs Improvement
