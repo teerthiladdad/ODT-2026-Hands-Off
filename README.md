@@ -450,7 +450,6 @@ Suggested sequence:
 
 **Insert image below:**  
 `[(https://drive.google.com/file/d/1pOvpKg4OYv1rVn18H-KYfztH-Smswymy/view?usp=sharing)]
-![Uploading image.png…]()
 
 
 ## 10.4 Pseudocode
