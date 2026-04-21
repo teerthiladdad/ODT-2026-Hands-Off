@@ -1,0 +1,41 @@
+
+     1. Start
+    A([Start Program]) --> B
+    
+    %% 2. Initialize
+    B[Initialize: Servos Open, LEDs Off, Buzzer Off] --> C
+    C[Calibrate: Lock Baseline Distance] --> D
+    
+    %% 3. Wait for input
+    D[Wait for Input: Player lifts object to trigger game] --> E
+    
+    %% 4. Read input
+    E[Read Input: Ultrasonic Sensor & Elapsed Time] --> F
+    
+    %% 8. Error handling (Glitch Filter)
+    F{Error Handling:<br>Is reading valid?<br>1cm < distance < 40cm}
+    F -- No (Glitch) --> E
+    F -- Yes --> G
+    
+    %% 5. Decision
+    G{Decision 1:<br>Is Time <= 0?}
+    G -- Yes --> J
+    G -- No --> H{Decision 2:<br>Is Variation > 2.0cm?}
+    
+    H -- Yes --> J
+    H -- No --> I{Decision 3:<br>Is Distance >= 12cm?}
+    
+    %% 6. Trigger output
+    J[Trigger Output:<br>Snap Claws & Play Game Over FX] --> L
+    I -- Yes --> K[Trigger Output:<br>Play Victory FX]
+    I -- No --> Update[Update NeoPixel Progress]
+    
+    %% Loop back
+    Update --> E
+    K --> L
+    
+    %% 7. Repeat or reset
+    L[Reset: Wait 3s, Open Claws, Turn off LEDs] --> M
+    M{Repeat or Reset?}
+    M -- Play Again --> B
+    M -- End Game --> N([Stop Program])
