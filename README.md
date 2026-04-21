@@ -449,7 +449,7 @@ Suggested sequence:
 - error handling.
 
 **Insert image below:**  
-`[(https://drive.google.com/file/d/1pOvpKg4OYv1rVn18H-KYfztH-Smswymy/view?usp=sharing)]
+<img src="https://github.com/teerthiladdad/ODT-2026-Hands-Off/blob/main/docs/code%20logic%20flowchart.jpg?raw=true" width="400">
 
 
 ## 10.4 Pseudocode
