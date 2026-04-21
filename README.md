@@ -1,4 +1,3 @@
-<img width="1068" height="908" alt="image" src="https://github.com/user-attachments/assets/786c31d4-368f-4c3d-a445-6c0966b6ff2b" /># Open Design and Technology  
 ## Final Project README
 
 > **Project Weight:** 70%  
@@ -375,7 +374,7 @@ Servos: Left Signal to Pin 21, Right Signal to Pin 22.]`
 Insert a hand-drawn or software-made circuit diagram.
 
 **Insert image below:**  
-`[Upload image and link here]`
+<img width="400" height="908" alt="image" src="https://github.com/user-attachments/assets/786c31d4-368f-4c3d-a445-6c0966b6ff2b" /># Open Design and Technology  
 
 ## 9.4 Power Plan
 
