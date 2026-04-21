@@ -348,7 +348,7 @@ If your project includes mechanical motion, document the digital planning before
 What changed after the CAD, animation, or simulation stage?
 
 **Response:**  
-`[the original plan for the claw system did not work so we had to create a pulley system with weights]`
+`[the original plan for the claw system did not work so we had to create a shaft system]`
 
 ---
 
@@ -664,7 +664,7 @@ Include:
 Expected outcomes:
 - [x] Idea finalized
 - [x] Core interaction decided
-- [ ] Sketches made
+- [x] Sketches made
 - [x] BOM completed
 - [x] Purchase needs identified
 - [x] Key uncertainty identified
@@ -684,15 +684,15 @@ Expected outcomes:
 - [x] Electronics integrated
 - [x] Code connected to hardware
 - [ ] App connected if required
-- [ ] First playable version exists
+- [x] First playable version exists
 
 ### Week 4 — Refine and Finish
 Expected outcomes:
 - [x] Technical bugs reduced
-- [ ] Playtesting completed
-- [ ] Improvements made
-- [ ] Documentation completed
-- [ ] Final build ready
+- [x] Playtesting completed
+- [x] Improvements made
+- [x] Documentation completed
+- [x] Final build ready
 
 ## 14.2 Weekly Update Log
 
@@ -794,9 +794,12 @@ Suggested images:
 - final build.
 
 Example:
-```md
-
-
+<img src="https://github.com/teerthiladdad/ODT-2026-Hands-Off/blob/main/images%20and%20videos/early%20sketch.jpeg?raw=true" width="400">
+<img src="https://github.com/teerthiladdad/ODT-2026-Hands-Off/blob/main/images%20and%20videos/build%20photo1.jpeg?raw=true" width="400">
+<img src="https://github.com/teerthiladdad/ODT-2026-Hands-Off/blob/main/images%20and%20videos/build%20photo%202.jpeg?raw=true" width="400">
+<img src="https://github.com/teerthiladdad/ODT-2026-Hands-Off/blob/main/images%20and%20videos/final%20model%201.jpeg?raw=true" width="400">
+<img src="https://github.com/teerthiladdad/ODT-2026-Hands-Off/blob/main/images%20and%20videos/final%20model%202.jpeg?raw=true" width="400">
+<img src="https://github.com/teerthiladdad/ODT-2026-Hands-Off/blob/main/images%20and%20videos/final%20model%203.jpeg?raw=true" width="400">
 
 ```
 
