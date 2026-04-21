@@ -250,6 +250,7 @@ Include:
 | `[Ultrasonic Sensor]` | Input | `[Constantly measures the height of the object.]` |
 | `[ESP32]` | Processing | `[Reads sensor, runs timer, evaluates trigger threshold, fires servo]` |
 | `[Servo motors]` | Output | `[Releases counterweight latch when triggered]` |
+| `[neopixel ring]` | Output | `[helps know when to start, how much have you progressed, and if you win or lose]` |
 | `[Counterweight + Pulley]` | Physical Action | `[Drops when released; pulls sleeve ring upward]` |
 | `[Sliding Ring + Wire Linkage]` | Physical Action | `[Translates upward ring motion into closing claw arms]` |
 | `[MDF Claw Assembly]` | Physical Action | `[Closes around the bomb prop, ending the round]` |
@@ -262,7 +263,7 @@ Include:
 Add an early sketch of the full idea.
 
 **Insert image below:**  
-`[Upload image and link here]`
+<img src="https://github.com/teerthiladdad/ODT-2026-Hands-Off/blob/main/images%20and%20videos/early%20sketch.jpeg?raw=true" width="400">
 
 Example:
 ```md
