@@ -1,0 +1,103 @@
+from machine import Pin
+import time
+
+# --- IMPORT FACULTY LIBRARIES ---
+from servo import Servo
+from hcsr04 import HCSR04
+
+# --- SETUP MOTORS & PINS ---
+servo_pin_1 = Pin(32, Pin.OUT)
+servo_pin_2 = Pin(33, Pin.OUT)
+
+mot1 = Servo(servo_pin_1)
+mot2 = Servo(servo_pin_2)
+
+# Ultrasonic sensor
+sensor = HCSR04(trigger_pin=5, echo_pin=18)
+
+# --- GAME DIFFICULTY SETTINGS ---
+TIME_LIMIT_SEC = 15.0     # 15 seconds to escape!
+WIN_HEIGHT_CM = 15.0      # Escaped the claw's reach!
+LIFT_THRESHOLD_CM = 0.5   # How much it needs to move to trigger the timer
+GLITCH_HEIGHT = 40.0      # Ignore weird sensor spikes
+CHECK_DELAY = 0.1       
+
+# Angles for the custom servo library
+ANGLE_OPEN = -90 
+ANGLE_CLOSED = 90 
+
+# ==========================================
+# MAIN GAME PROCEDURE
+# ==========================================
+
+print("--- BOOTING CLAW SNATCHER (TIME ATTACK) ---")
+mot1.write_angle(ANGLE_OPEN)
+mot2.write_angle(ANGLE_OPEN)
+
+# --- CALIBRATION SEQUENCE ---
+print("Locking onto target...")
+baseline_distance = -1
+
+# Take readings until we get a stable number under 10cm
+while(baseline_distance < 0 or baseline_distance > 10.0):
+    baseline_distance = sensor.distance_cm()
+    time.sleep(0.1)
+
+print('Target locked at baseline:', baseline_distance, 'cm')
+
+# ==========================================
+# PHASE 1: WAITING FOR LIFT-OFF
+# ==========================================
+print("\n>>> GAME ARMED: WAITING FOR MOVEMENT... <<<")
+
+game_started = False
+while(game_started == False):
+    current_distance = sensor.distance_cm()
+    
+    # Check if lifted higher than baseline + threshold
+    if 1.0 < current_distance < GLITCH_HEIGHT:
+        if current_distance > (baseline_distance + LIFT_THRESHOLD_CM):
+            game_started = True
+            print('\n[ALERT] MOVEMENT DETECTED!')
+            print('>>>', TIME_LIMIT_SEC, 'SECONDS ON THE CLOCK. GO! GO! GO! <<<')
+            
+    time.sleep(0.1)
+
+# ==========================================
+# PHASE 2: THE COUNTDOWN
+# ==========================================
+start_ticks = time.ticks_ms()  
+
+while(1):
+    # Calculate exactly how much time has passed
+    elapsed_ms = time.ticks_diff(time.ticks_ms(), start_ticks)
+    elapsed_sec = elapsed_ms / 1000.0
+    time_left = TIME_LIMIT_SEC - elapsed_sec
+    
+    # 1. DID THEY RUN OUT OF TIME?
+    if time_left <= 0:
+        print('\n[ALARM] TIME IS UP! ZERO SECONDS REMAINING!')
+        print('>>> SNAP! The claw closed! You lose. <<<')
+        
+        # SNAP CLAWS
+        mot1.write_angle(ANGLE_CLOSED)
+        mot2.write_angle(ANGLE_CLOSED)
+        break # Exit the game loop
+        
+    # 2. CHECK THE SENSOR
+    current_distance = sensor.distance_cm()
+    
+    # Apply the glitch filter so it doesn't accidentally trigger a win
+    if 1.0 < current_distance < GLITCH_HEIGHT:
+        
+        # Print the dramatic countdown
+        print('Height:', current_distance, 'cm  |  Time Left:', time_left, 'sec')
+        
+        # 3. DID THEY WIN?
+        if current_distance >= WIN_HEIGHT_CM:
+            print('\n>>> SUCCESS! YOU ESCAPED WITH', time_left, 'SECONDS LEFT! <<<')
+            break # Exit the game loop
+            
+    time.sleep(CHECK_DELAY)
+
+print('\nGAME OVER. Restart script to play again.')	
