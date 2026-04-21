@@ -51,7 +51,7 @@ By the final review, this README should clearly show:
 # 1. Team Identity
 
 ## 1.1 Studio / Group Name
-`[Enter your group name]`
+`[Hands Off]`
 
 ## 1.2 Team Members
 
@@ -74,11 +74,11 @@ In 1–2 paragraphs, explain:
 - what technologies are involved.
 
 **Response:**  
-This project is a physical, interactive game built around tension, balance, and coordination between two players. At the center of the setup is a claw-like structure holding an object suspended by strings. Each player controls one string and must work together to lift the object smoothly within a time limit.
+`[This project is a physical, interactive game built around tension, balance, and coordination between two players. At the center of the setup is a claw-like structure holding an object suspended by strings. Each player controls one string and must work together to lift the object smoothly within a time limit.
 
 The challenge lies in maintaining controlled motion, any sudden or uneven movement risks failure. If the players succeed, they retrieve the object safely. If they fail or run out of time, a servo-triggered mechanism activates, causing the claw to close and trap the object.
 
-The experience is designed to feel tense, slightly stressful, and engaging, encouraging communication and repeated attempts. It combines mechanical design, electronics, and physical interaction.
+The experience is designed to feel tense, slightly stressful, and engaging, encouraging communication and repeated attempts. It combines mechanical design, electronics, and physical interaction.]`
 
 ---
 
@@ -697,10 +697,10 @@ Expected outcomes:
 
 | Week | Planned Goal | What Actually Happened | What Changed | Next Steps |
 |---|---|---|---|---|
-| Week 1 | `[Write here]` | `[Write here]` | `[Write here]` | `[Write here]` |
-| Week 2 | `[Write here]` | `[Write here]` | `[Write here]` | `[Write here]` |
-| Week 3 | `[Write here]` | `[Write here]` | `[Write here]` | `[Write here]` |
-| Week 4 | `[Write here]` | `[Write here]` | `[Write here]` | `[Write here]` |
+| Week 1 | `[finalise concept]` | `[we arrived at a base concept]` | `[the concept of the game changed from "hand" to "claw"]` | `[defining how we can achieve it]` |
+| Week 2 | `[get the laser cutting and 3d printing files ready and getting it done]` | `[laser cutting done]` | `[3d printing pushed to next week]` | `[start the mechanical build of the project]` |
+| Week 3 | `[finish the mechanical build]` | `[almost completed]` | `[ had to make some improvisions which delayed the process]` | `[testing and assembly]` |
+| Week 4 | `[ready the complete working model]` | `[completed]` | `[na]` | `[na]` |
 
 ---
 
@@ -748,15 +748,14 @@ What is the single biggest uncertainty in your project at this stage?
 
 | Date | Problem Found | Type | What You Tried | Result | Next Action |
 |---|---|---|---|---|---|
-| `[Week 3]` | `[Servos twitching but not moving]` | `[Technical]` | `[Added shared Ground wire.]` | `[Servos snap perfectly.]` | `[Move to code logic]` |
-| `[Week 4]` | `[ESP32 freezing/disconnecting when claws snap]` | `[Technical]` | `[Moved servos from ESP32 5V pin to an external 5V power supply.]` | `[Works better]` | `[Final assembly]` |
+| `[Week 3]` | `[Servos twitching but not moving the weight of the shaft]` | `[Mechanical]` | `[extending the wing of the servo]` | `[still doesnt work; servo not powerfull enough]` | `[change to a pulley mechanism]` |
+| `[Week 4]` | `[counter-weight not enough]` | `[Mechanical]` | `[increasing the weight]` | `[Works better]` | `[Final assembly]` |
 
 ## 16.4 Playtesting Notes
 
 | Tester | What They Did | What Confused Them | What They Enjoyed | What You Will Change |
 |---|---|---|---|---|
-| `[Peer / friend / classmate]` | `[Observation]` | `[Observation]` | `[Observation]` | `[Action]` |
-| `[Peer / friend / classmate]` | `[Observation]` | `[Observation]` | `[Observation]` | `[Action]` |
+| `[Peer / friend / classmate]` | `[tried to lift the object in their own ways]` | `[exactly how slowly or fastly or steadily to lift the object using the string]` | `[the actual game, wanted to play twice or thrice at least]` | `[increase the leeway of the object distance spike]` |
 
 ---
 
@@ -804,9 +803,8 @@ Example:
 
 | Version | Date | What Changed | Why |
 |---|---|---|---|
-| `v1` | `[Date]` | `[Describe]` | `[Reason]` |
-| `v2` | `[Date]` | `[Describe]` | `[Reason]` |
-| `v3` | `[Date]` | `[Describe]` | `[Reason]` |
+| `a hand which holds the object which closes when triggered` | `[mid week 1]` | `[the hand changed to a claw]` | `[there wasnt any  space to place the ultrasonic for it to stay and detect]` |
+| `a claw which has an object that one pllayer tries to lift` | `[end of week 1]` | `[single player changed to dual-player]` | `[the game didnt feel engaging enough]` |
 
 ---
 
@@ -844,7 +842,7 @@ What slowed you down?
 How well did you manage time, tasks, and responsibilities?
 
 **Response:**  
-`[Write here]`
+`[Our team worked well in translating the concept into a functional physical system, especially in terms of fabrication and testing. What slowed us down was the iterative nature of mechanical adjustments, particularly achieving smooth motion in the sleeve and claw system, which required multiple refinements. Time and tasks were managed reasonably well, but some delays occurred during troubleshooting phases where unexpected mechanical and alignment issues arose. Overall, we maintained steady progress and adapted our workflow when needed.]`
 
 ## 19.2 Technical Reflection
 What did you learn about:
@@ -855,7 +853,7 @@ What did you learn about:
 - integration?
 
 **Response:**  
-`[write here]`
+`[Through this project, we learned how to integrate electronics, coding, and mechanical systems into a cohesive working prototype. In electronics, we understood how to control a servo motor reliably in a way where it can actually take the load necessary using a microcontroller and how to connect it within a larger system. In coding, we focused on implementing timed triggers and simple control logic. Mechanically, we explored linkage systems and how motion can be transferred through wires and sliding components. In fabrication, we gained experience with laser-cut MDF, material finishing, and assembly techniques. Most importantly, we learned that integration is the most challenging stage, requiring constant testing and adjustment to ensure all components work together smoothly.]`
 
 ## 19.3 Design Reflection
 What did you learn about:
@@ -867,7 +865,7 @@ What did you learn about:
 - iteration?
 
 **Response:**  
-`[Write here]`
+`[This project helped us understand how to design for play by creating an experience driven by tension, coordination, and uncertainty. We learned that delight can come from simple interactions when combined with time pressure and physical feedback. Clarity was important, as the interaction needed to be intuitive without extensive explanation. Designing for physical interaction highlighted how small variations in movement can significantly affect user experience. We also realized the importance of player understanding through observation and testing, as well as the need for iteration to refine both usability and engagement. Overall, we learned that successful playful design relies on balancing challenge, feedback, and accessibility.]`
 
 ## 19.4 If You Had One More Week
 What would you improve next?
@@ -895,7 +893,7 @@ Before submission, confirm that:
 - [X] Weekly logs are updated
 - [X] Risk register is complete
 - [X] Testing log is updated
-- [ ] Playtesting notes are included
+- [x Playtesting notes are included
 - [ ] Build photos are included
 - [ ] Final reflection is written
 
