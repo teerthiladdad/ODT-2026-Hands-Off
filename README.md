@@ -1,4 +1,4 @@
-## Final Project README
+<img width="420" height="942" alt="image" src="https://github.com/user-attachments/assets/edbd4870-db9e-4b8b-ab8d-7776c0dd1607" />## Final Project README
 
 > **Project Weight:** 70%  
 > **Team Size:** 2 students  
@@ -449,7 +449,9 @@ Suggested sequence:
 - error handling.
 
 **Insert image below:**  
-`[(https://drive.google.com/file/d/1pOvpKg4OYv1rVn18H-KYfztH-Smswymy/view?usp=sharing)]`
+`[(https://drive.google.com/file/d/1pOvpKg4OYv1rVn18H-KYfztH-Smswymy/view?usp=sharing)]
+![Uploading image.png…]()
+
 
 ## 10.4 Pseudocode
 
