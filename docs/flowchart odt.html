@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claw Snatcher - Game Logic Flowchart</title>
+    <style>
+        body {
+            background-color: #0d1117; /* GitHub Dark background */
+            color: #c9d1d9; /* GitHub Text color */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            margin: 0;
+        }
+        h1 {
+            color: #58a6ff;
+            margin-bottom: 5px;
+        }
+        p {
+            color: #8b949e;
+            margin-bottom: 30px;
+        }
+        .flowchart-container {
+            background-color: #161b22;
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid #30363d;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+            max-width: 900px;
+            width: 100%;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Claw Snatcher: Nightmare Mode</h1>
+    <p>System Architecture & Logic Flowchart</p>
+
+    <div class="flowchart-container">
+        <pre class="mermaid">
+            graph TD
+                %% 1. Start
+                A([Start Program]) --> B
+                
+                %% 2. Initialize
+                B[Initialize: Servos Open, LEDs Off, Buzzer Off] --> C
+                C[Calibrate: Lock Baseline Distance] --> D
+                
+                %% 3. Wait for input
+                D[Wait for Input: Player lifts object to trigger game] --> E
+                
+                %% 4. Read input
+                E[Read Input: Ultrasonic Sensor & Elapsed Time] --> F
+                
+                %% 8. Error handling (Glitch Filter)
+                F{Error Handling:<br>Is reading valid?<br>1cm < distance < 40cm}
+                F -- No (Glitch) --> E
+                F -- Yes --> G
+                
+                %% 5. Decision
+                G{Decision 1:<br>Is Time <= 0?}
+                G -- Yes --> J
+                G -- No --> H{Decision 2:<br>Is Variation > 2.0cm?}
+                
+                H -- Yes --> J
+                H -- No --> I{Decision 3:<br>Is Distance >= 12cm?}
+                
+                %% 6. Trigger output
+                J[Trigger Output:<br>Snap Claws & Play Game Over FX] --> L
+                I -- Yes --> K[Trigger Output:<br>Play Victory FX]
+                I -- No --> Update[Update NeoPixel Progress]
+                
+                %% Loop back
+                Update --> E
+                K --> L
+                
+                %% 7. Repeat or reset
+                L[Reset: Wait 3s, Open Claws, Turn off LEDs] --> M
+                M{Repeat or Reset?}
+                M -- Play Again --> B
+                M -- End Game --> N([Stop Program])
+
+                %% Colors to make it look professional
+                classDef default fill:#2b3a42,stroke:#4fc3f7,stroke-width:2px,color:#fff;
+                classDef decision fill:#3e2723,stroke:#ff7043,stroke-width:2px,color:#fff;
+                classDef output fill:#8b0000,stroke:#ff5252,stroke-width:2px,color:#fff;
+                classDef win fill:#004d40,stroke:#00e676,stroke-width:2px,color:#fff;
+                
+                class F,G,H,I,M decision;
+                class J output;
+                class K win;
+        </pre>
+    </div>
+
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ 
+            startOnLoad: true, 
+            theme: 'dark',
+            securityLevel: 'loose'
+        });
+    </script>
+</body>
+</html>
