@@ -282,7 +282,7 @@ Add a sketch with labels showing:
 - output elements.
 
 **Insert image below:**  
-`[Upload image and link here]`
+<img src="https://github.com/teerthiladdad/ODT-2026-Hands-Off/blob/main/images%20and%20videos/labelled%20build%20sketch.jpeg?raw=true" width="400">
 
 ## 7.3 Approximate Dimensions
 
