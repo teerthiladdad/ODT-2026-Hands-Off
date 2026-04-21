@@ -1,4 +1,4 @@
-<img width="420" height="942" alt="image" src="https://github.com/user-attachments/assets/edbd4870-db9e-4b8b-ab8d-7776c0dd1607" />## Final Project README
+ Final Project README
 
 > **Project Weight:** 70%  
 > **Team Size:** 2 students  
