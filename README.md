@@ -57,7 +57,7 @@ By the final review, this README should clearly show:
 
 | Name | Primary Role | Secondary Role | Strengths Brought to the Project |
 |---|---|---|---|
-| `[Aarav Srivastava]` | `[Coding / App ]` | `[Mechanics/ Testing]` | `[MicroPython scripting, debugging hardware-software bridges]` |
+| `[Aarav Srivastava]` | `[Coding]` | `[Testing / Fabrication]` | `[MicroPython scripting, debugging hardware-software bridges]` |
 | `[Teerthi Laddad]` | `[Electronics / Fabrication / Mechanics]` | `[Testing]` | `[Hands-on fabrication, mechanical assembly, system integration, electronics implementation, motion optimization, surface finishing, iterative prototyping, testing & debugging, problem-solving, precision alignment, reliability improvement]` |
 
 ## 1.3 Project Title
