@@ -1,4 +1,4 @@
-# Open Design and Technology  
+<img width="1068" height="908" alt="image" src="https://github.com/user-attachments/assets/786c31d4-368f-4c3d-a445-6c0966b6ff2b" /># Open Design and Technology  
 ## Final Project README
 
 > **Project Weight:** 70%  
@@ -348,7 +348,7 @@ If your project includes mechanical motion, document the digital planning before
 What changed after the CAD, animation, or simulation stage?
 
 **Response:**  
-`[Write here]`
+`[the original plan for the claw system did not work so we had to create a pulley system with weights]`
 
 ---
 
@@ -426,7 +426,7 @@ Suggested sequence:
 - error handling.
 
 **Insert image below:**  
-`[Upload image and link here]`
+`[(https://drive.google.com/file/d/1pOvpKg4OYv1rVn18H-KYfztH-Smswymy/view?usp=sharing)]`
 
 ## 10.4 Pseudocode
 
