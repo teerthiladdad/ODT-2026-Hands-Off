@@ -801,8 +801,8 @@ Example:
 <img src="https://github.com/teerthiladdad/ODT-2026-Hands-Off/blob/main/images%20and%20videos/final%20model%202.jpeg?raw=true" width="400">
 <img src="https://github.com/teerthiladdad/ODT-2026-Hands-Off/blob/main/images%20and%20videos/final%20model%203.jpeg?raw=true" width="400">
 
-```
 
+``
 ## 17.3 Version History
 
 | Version | Date | What Changed | Why |
