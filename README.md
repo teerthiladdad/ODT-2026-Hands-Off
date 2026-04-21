@@ -431,7 +431,83 @@ Suggested sequence:
 ## 10.4 Pseudocode
 
 ```text
-[Write your pseudocode here]
+[IMPORT required hardware libraries (Pins, PWM, Time, NeoPixel, Servo, HCSR04)
+
+SETUP hardware connections:
+  - Attach Servos to Pins 32 and 33
+  - Attach Ultrasonic Sensor to Pins 5 (Trig) and 18 (Echo)
+  - Attach NeoPixel Strip to Pin 4
+  - Attach Buzzer to Pin 14 using PWM
+
+DEFINE game rules (Constants):
+  - Time Limit = 10 Seconds
+  - Win Height = 12 cm
+  - Lift Threshold = 0.25 cm
+  - Max Safe Movement (Variation) = 2.0 cm
+
+DEFINE Audio-Visual Effects (Helper Functions):
+  - function play_sound(pitch, duration)
+  - function fx_game_start() -> Sweeping yellow lights and rising tones
+  - function fx_update_progress(height) -> Lights up LEDs based on % to Win Height
+  - function fx_game_over() -> Turns strip red and plays sad tones
+  - function fx_victory() -> Flashes green and plays arcade win sound
+
+START MAIN PROGRAM:
+  Turn off all LEDs
+  Open Claws (Set Servos to 0 degrees)
+
+  CALIBRATION SEQUENCE:
+    Read ultrasonic sensor until a stable distance under 10cm is found
+    Save this stable reading as 'baseline_distance'
+    Trigger fx_game_start()
+
+  PHASE 1: WAIT FOR LIFT-OFF
+    Loop continuously:
+      Read current_distance
+      IF current_distance > (baseline_distance + Lift Threshold):
+        Print "Lift-Off Detected!"
+        Break loop and start the game
+
+  PHASE 2: THE COUNTDOWN & STEADY HAND TRAP
+    Start background millisecond timer
+    Set previous_distance = baseline_distance
+
+    Loop continuously:
+      Calculate time_left = 10 seconds - elapsed_time
+
+      TRAP 1: CHECK TIME LIMIT
+        IF time_left <= 0:
+          Snap claws closed (90 degrees)
+          Trigger fx_game_over()
+          Break loop (Player Loses)
+
+      Read current_distance
+      IF reading is physically possible (ignore ultrasonic glitches):
+        Calculate variation = Absolute Value of (current_distance - previous_distance)
+
+        TRAP 2: CHECK FOR SHAKY HANDS
+          IF variation > Max Safe Movement:
+            Snap claws closed (90 degrees)
+            Trigger fx_game_over()
+            Break loop (Player Loses)
+            
+          ELSE (Safe lift):
+            Trigger fx_update_progress(current_distance)
+            
+            CHECK WIN CONDITION:
+              IF current_distance >= Win Height:
+                Trigger fx_victory()
+                Break loop (Player Wins)
+
+            Update previous_distance = current_distance
+
+      Wait 0.1 seconds before checking again
+
+  POST-GAME RESET SEQUENCE:
+    Wait 3 seconds to let players process the win/loss
+    Open claws (0 degrees)
+    Turn off all LEDs
+    End program (Ready for restart)]
 ```
 
 ---
